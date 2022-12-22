@@ -5,12 +5,13 @@ template<typename T>
 class DynamicArray {
 public:
     DynamicArray();
-    void push_back(T n);
-    void insert(T n, size_t pos);
+    DynamicArray(DynamicArray &array);
+    void push_back(const T &n);
+    void insert(const T &n, size_t pos);
     void check_capacity();
     void check_range(size_t n);
     T get_data(size_t n);
-    void erase_data(T n);
+    void erase_data(const T &n);
     void erase(size_t n);
     size_t get_size();
     size_t getCap();
@@ -19,6 +20,7 @@ public:
     T get_last();
 
     T &operator[](size_t n);
+    DynamicArray<T> &operator=(const DynamicArray &array);
 
 private:
     size_t m_size;

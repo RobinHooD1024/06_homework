@@ -16,7 +16,6 @@ int main() {
         my_linear_array.push_back(i);
         my_linear_array_one_way.push_back(i);
     }
-
     try {
         std::cout << my_int_array << std::endl;
         std::cout << my_int_array.get_size() << std::endl;
@@ -66,6 +65,11 @@ int main() {
         std::cout << my_int_array[3] << std::endl;
         std::cout << my_linear_array[3] << std::endl;
         std::cout << my_linear_array_one_way[3] << std::endl;
+
+
+        DynamicArray<int> copy {my_int_array};
+        std::cout << copy.get_last() << std::endl;
+        std::cout << copy[3];
 
     } catch (const char* msg) {
         std::cerr << msg << std::endl;

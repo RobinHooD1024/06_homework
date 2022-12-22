@@ -16,14 +16,14 @@ public:
 
     void check_range(size_t n);
 
-    void push_back(T n);
+    void push_back(const T &n);
 
     void erase(size_t n);
 
     T get_first();
     T get_last();
 
-    void insert(T n, size_t t);
+    void insert(const T &n, size_t t);
 
     T &operator[](size_t n);
     size_t get_size();

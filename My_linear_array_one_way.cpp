@@ -14,7 +14,7 @@ void My_linear_array_one_way<T>::check_range(size_t n) {
 }
 
 template <typename T>
-void My_linear_array_one_way<T>::push_back(T n) {
+void My_linear_array_one_way<T>::push_back(const T &n) {
     if (m_size == 0) {
         my_node->data = n;
         m_size++;
@@ -60,7 +60,7 @@ void My_linear_array_one_way<T>::erase(size_t n) {
 }
 
 template <typename T>
-void My_linear_array_one_way<T>::insert(T n, size_t t) {
+void My_linear_array_one_way<T>::insert(const T &n, size_t t) {
     check_range(t);
     my_node = first_node;
     while (t > 0) {

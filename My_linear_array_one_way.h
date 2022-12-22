@@ -6,9 +6,9 @@ class My_linear_array_one_way {
 public:
     My_linear_array_one_way();
     void check_range(size_t n);
-    void push_back(T n);
+    void push_back(const T &n);
     void erase(size_t n);
-    void insert(T n, size_t t);
+    void insert(const T &n, size_t t);
     T get_first();
     T get_last();
     T &operator[](size_t n);

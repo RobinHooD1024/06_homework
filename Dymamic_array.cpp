@@ -4,7 +4,15 @@ template <typename T>
 DynamicArray<T>::DynamicArray() : m_size{0}, m_capacity{0}, m_data{nullptr}, m_delete_counter{0} {};
 
 template <typename T>
-void DynamicArray<T>::insert(T n, size_t pos) {
+DynamicArray<T>::DynamicArray(DynamicArray &array) : m_size{array.m_size}, m_capacity{array.m_capacity}, m_delete_counter{array.m_delete_counter} {
+    m_data = new T [m_size];
+    for (size_t i = 0; i < m_size; i++) {
+        m_data[i] = array.m_data[i];
+    }
+}
+
+template <typename T>
+void DynamicArray<T>::insert(const T &n, size_t pos) {
     check_capacity();
     for (size_t i = m_size;i>pos; i--) {
         m_data[i] = m_data[i-1];
@@ -14,7 +22,7 @@ void DynamicArray<T>::insert(T n, size_t pos) {
 }
 
 template <typename T>
-void DynamicArray<T>:: push_back(T n) {
+void DynamicArray<T>:: push_back(const T &n) {
     check_capacity();
     m_data[m_size] = n;
     m_size++;
@@ -52,7 +60,7 @@ T DynamicArray<T>::get_data(size_t n) {
 }
 
 template <typename T>
-void DynamicArray<T>::erase_data(T n) {
+void DynamicArray<T>::erase_data(const T &n) {
     for (size_t i = 0; i < m_size; i++) {
         if (m_data[i] == n) {
             for (size_t j = i+1; j < m_size; j++) {
@@ -84,10 +92,21 @@ template <typename T>
 DynamicArray<T>::~DynamicArray() {delete[] m_data;}
 
 template <typename T>
-
 T &DynamicArray<T>::operator[](size_t n) {
     check_range(n);
     return m_data[n];
+}
+
+template <typename T>
+&DynamicArray<T>::operator=(const DynamicArray &array) {
+    m_size = array.m_size;
+    m_capacity = array.m_capacity;
+    m_delete_counter = array.m_delete_counter;
+    m_data = new T [m_size];
+    for (size_t i = 0; i < m_size; i++) {
+        m_data[i] = array.m_data[i];
+    }
+
 }
 
 template <typename T>
