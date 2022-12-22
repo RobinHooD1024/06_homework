@@ -102,7 +102,6 @@ template <typename T>
     m_size = array.m_size;
     m_capacity = array.m_capacity;
     m_delete_counter = array.m_delete_counter;
-    m_data = new T [m_size];
     for (size_t i = 0; i < m_size; i++) {
         m_data[i] = array.m_data[i];
     }
