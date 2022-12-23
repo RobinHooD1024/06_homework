@@ -20,7 +20,7 @@ public:
     T get_last();
 
     T &operator[](size_t n);
-    DynamicArray<T> &operator=(const DynamicArray &array);
+    DynamicArray &operator=(const DynamicArray<T> &array);
 
 private:
     size_t m_size;

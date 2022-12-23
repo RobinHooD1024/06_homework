@@ -98,10 +98,12 @@ T &DynamicArray<T>::operator[](size_t n) {
 }
 
 template <typename T>
-&DynamicArray<T>::operator=(const DynamicArray &array) {
+DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray<T> &array) {
     m_size = array.m_size;
     m_capacity = array.m_capacity;
     m_delete_counter = array.m_delete_counter;
+    delete *m_data;
+    m_data = new T[m_size];
     for (size_t i = 0; i < m_size; i++) {
         m_data[i] = array.m_data[i];
     }
