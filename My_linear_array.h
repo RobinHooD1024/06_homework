@@ -13,7 +13,7 @@ template<typename T>
 class My_linear_array {
 public:
     My_linear_array();
-
+    My_linear_array(const My_linear_array<T> &array);
     void check_range(size_t n);
 
     void push_back(const T &n);

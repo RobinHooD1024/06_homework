@@ -9,6 +9,24 @@ My_linear_array<T>::My_linear_array() : m_size{0}, my_node(new Node<T>), erase_c
 };
 
 template <typename T>
+My_linear_array<T>::My_linear_array(const My_linear_array<T> &array) : m_size{array.m_size}, erase_count{array.erase_count} {
+    first_node = new Node<T>;
+    first_node->data = array.first_node->data;
+    my_node = first_node;
+    tmp_node = array.first_node->next;
+    while (tmp_node != nullptr) {
+        Node<T> *tmp = new Node<T>;
+        my_node->next = tmp;
+        tmp->prev = my_node;
+        tmp->data = tmp_node->data;
+        my_node = tmp;
+        tmp_node = tmp_node->next;
+    }
+    last_node = my_node;
+    last_node->next = nullptr;
+};
+
+template <typename T>
 void My_linear_array<T>::check_range(size_t n) {
     if (n >= m_size || n < 0) {
         throw "Out of range";

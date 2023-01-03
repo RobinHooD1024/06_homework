@@ -69,7 +69,11 @@ int main() {
 
         DynamicArray<int> copy {my_int_array};
         std::cout << copy.get_last() << std::endl;
-        std::cout << copy[3];
+        std::cout << copy[3] << std::endl;
+        std::cout << "=====================" << std::endl;
+        My_linear_array<int> copy2 {my_linear_array};
+        std::cout << copy2.get_last() << std::endl;
+        std::cout << copy2[3];
 
     } catch (const char* msg) {
         std::cerr << msg << std::endl;
