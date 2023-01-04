@@ -29,7 +29,7 @@ My_linear_array<T>::My_linear_array(const My_linear_array<T> &array) : m_size{ar
 template <typename T>
 void My_linear_array<T>::check_range(size_t n) {
     if (n >= m_size || n < 0) {
-        throw "Out of range";
+        throw std::out_of_range ("Out of range");
     }
 }
 

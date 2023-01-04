@@ -9,7 +9,7 @@ My_linear_array_one_way<T>::My_linear_array_one_way() : m_size{0}, my_node(new N
 template <typename T>
 void My_linear_array_one_way<T>::check_range(size_t n) {
     if (n >= m_size || n < 0) {
-        throw "Out of range";
+        throw std::out_of_range ("Out of range");
     }
 }
 

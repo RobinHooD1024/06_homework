@@ -74,9 +74,10 @@ int main() {
         My_linear_array<int> copy2 {my_linear_array};
         std::cout << copy2.get_last() << std::endl;
         std::cout << copy2[3];
+        std::cout << copy2[13];
 
-    } catch (const char* msg) {
-        std::cerr << msg << std::endl;
+    } catch (std::exception &exception) {
+        std::cout << exception.what() << std::endl;
     }
 
     return 0;

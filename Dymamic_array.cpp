@@ -49,7 +49,7 @@ void DynamicArray<T>::check_capacity() {
 template <typename T>
 void DynamicArray<T>::check_range(size_t n) {
     if (n  >= m_size || n < 0) {
-        throw "Out of range";
+        throw std::out_of_range ("Out of range");
     }
 }
 
