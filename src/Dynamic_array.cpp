@@ -1,4 +1,4 @@
-#include "Dymamic_array.h"
+#include "Dynamic_array.h"
 
 template <typename T>
 DynamicArray<T>::DynamicArray() : m_size{0}, m_capacity{0}, m_data{nullptr}, m_delete_counter{0} {};

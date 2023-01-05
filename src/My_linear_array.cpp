@@ -34,6 +34,22 @@ void My_linear_array<T>::check_range(size_t n) {
 }
 
 template <typename T>
+void My_linear_array<T>::push_front(const T &n) {
+    if (m_size == 0) {
+        my_node->data = n;
+        m_size++;
+    } else {
+        Node<T> *new_node = new Node<T>;
+        new_node->next = first_node;
+        first_node->prev = new_node;
+        new_node->data = n;
+        new_node->prev = nullptr;
+        first_node = new_node;
+        m_size++;
+    }
+}
+
+template <typename T>
 void My_linear_array<T>::push_back(const T &n) {
     if (m_size == 0) {
         my_node->data = n;
@@ -63,15 +79,30 @@ template <typename T>
 void My_linear_array<T>::erase(size_t n) {
     check_range(n);
     my_node = first_node;
+    if (n == 0) {
+        tmp_node = first_node->next;
+        tmp_node->prev = nullptr;
+        delete my_node;
+        first_node = tmp_node;
+        m_size--;
+        erase_count++;
+        return;
+    }
     n -= erase_count;
     while (n > 0) {
         my_node = my_node->next;
         n--;
     }
-    tmp_node = my_node->prev;
-    tmp_node->next = my_node->next;
-    tmp_node = my_node->next;
-    tmp_node->prev = my_node->prev;
+    if (my_node->next != nullptr) {
+        my_node->prev->next = my_node->next;
+        my_node->next->prev = my_node->prev;
+    } else {
+        my_node->prev->next = nullptr;
+    }
+//    tmp_node = my_node->prev;
+//    tmp_node->next = my_node->next;
+//    tmp_node = my_node->next;
+//    tmp_node->prev = my_node->prev;
     delete my_node;
     m_size--;
     erase_count++;

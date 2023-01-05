@@ -1,8 +1,8 @@
 #include <iostream>
 #include "My_linear_array.h"
 #include "My_linear_array.cpp"
-#include "Dymamic_array.h"
-#include "Dymamic_array.cpp"
+#include "Dynamic_array.h"
+#include "Dynamic_array.cpp"
 #include "My_linear_array_one_way.h"
 #include "My_linear_array_one_way.cpp"
 

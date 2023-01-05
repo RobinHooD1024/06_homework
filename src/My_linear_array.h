@@ -17,6 +17,7 @@ public:
     void check_range(size_t n);
 
     void push_back(const T &n);
+    void push_front(const T &n);
 
     void erase(size_t n);
 
