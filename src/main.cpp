@@ -68,6 +68,8 @@ int main() {
 
 
         DynamicArray<int> copy {my_int_array};
+        DynamicArray<int> copy_2;
+        copy_2 = copy;
         std::cout << copy.get_last() << std::endl;
         std::cout << copy[3] << std::endl;
         std::cout << "=====================" << std::endl;

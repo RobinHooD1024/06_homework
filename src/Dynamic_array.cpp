@@ -4,7 +4,7 @@ template <typename T>
 DynamicArray<T>::DynamicArray() : m_size{0}, m_capacity{0}, m_data{nullptr}, m_delete_counter{0} {};
 
 template <typename T>
-DynamicArray<T>::DynamicArray(DynamicArray &array) : m_size{array.m_size}, m_capacity{array.m_capacity}, m_delete_counter{array.m_delete_counter} {
+DynamicArray<T>::DynamicArray(const DynamicArray &array) : m_size{array.m_size}, m_capacity{array.m_capacity}, m_delete_counter{array.m_delete_counter} {
     m_data = new T [m_size];
     for (size_t i = 0; i < m_size; i++) {
         m_data[i] = array.m_data[i];
@@ -26,6 +26,16 @@ void DynamicArray<T>:: push_back(const T &n) {
     check_capacity();
     m_data[m_size] = n;
     m_size++;
+}
+
+template <typename T>
+void DynamicArray<T>:: push_front(const T &n) {
+    check_capacity();
+    m_size++;
+    for (size_t i = m_size; i>0;i--) {
+        m_data[i] = m_data[i-1];
+    }
+    m_data[0] = n;
 }
 
 template <typename T>
@@ -97,21 +107,24 @@ T &DynamicArray<T>::operator[](size_t n) {
     return m_data[n];
 }
 
+
+
 template <typename T>
 DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray<T> &array) {
-    if (this == array) {
+    if (this == &array) {
         return *this;
     }
     m_size = array.m_size;
     m_capacity = array.m_capacity;
     m_delete_counter = array.m_delete_counter;
-    delete *m_data;
+    delete m_data;
     m_data = new T[m_size];
     for (size_t i = 0; i < m_size; i++) {
         m_data[i] = array.m_data[i];
     }
     return *this;
 }
+
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, DynamicArray<T> &array) {

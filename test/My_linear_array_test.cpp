@@ -11,9 +11,7 @@ struct My_linear_array_fixture : public testing::Test {
         }
     }
 
-    void TearDown() override {
-
-    }
+    void TearDown() override {}
 };
 
 TEST(My_linear_array, Empty) {
@@ -113,6 +111,15 @@ TEST_F(My_linear_array_fixture, get_element) {
     ASSERT_EQ(test_array[3], 3);
 }
 
+TEST_F(My_linear_array_fixture, out_of_range) {
+    // Arrange
+    size_t ref_size = test_array.get_size();
+    // Act
+
+    // Assert
+    ASSERT_THROW(test_array[ref_size], std::out_of_range);
+}
+
 TEST(My_linear_array, get_size) {
     // Arrange
     My_linear_array<int> test_array;
@@ -125,6 +132,18 @@ TEST(My_linear_array, get_size) {
 
     // Assert
     ASSERT_EQ(test_array.get_size(), ref_size);
+}
+
+TEST_F(My_linear_array_fixture, copy_container) {
+    // Arrange
+    My_linear_array<int> ref_array(test_array);
+    // Act
+
+    // Assert
+    ASSERT_EQ(ref_array.get_size(),test_array.get_size());
+    for (size_t i = 0; i < test_array.get_size(); i++) {
+        ASSERT_EQ(ref_array[i],test_array[i]);
+    }
 }
 
 

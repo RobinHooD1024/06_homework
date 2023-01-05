@@ -99,10 +99,6 @@ void My_linear_array<T>::erase(size_t n) {
     } else {
         my_node->prev->next = nullptr;
     }
-//    tmp_node = my_node->prev;
-//    tmp_node->next = my_node->next;
-//    tmp_node = my_node->next;
-//    tmp_node->prev = my_node->prev;
     delete my_node;
     m_size--;
     erase_count++;
