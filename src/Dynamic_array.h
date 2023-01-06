@@ -21,8 +21,8 @@ public:
     T get_last();
 
     T &operator[](size_t n);
-    DynamicArray &operator=(const DynamicArray<T> &array);
-    bool operator==(const DynamicArray<T> &array);
+    DynamicArray &operator=(const DynamicArray<T> &array) noexcept;
+    DynamicArray &operator=(DynamicArray<T> &&array) noexcept;
 
 private:
     size_t m_size;

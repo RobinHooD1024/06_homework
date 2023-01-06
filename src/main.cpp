@@ -70,7 +70,9 @@ int main() {
         DynamicArray<int> copy {my_int_array};
         DynamicArray<int> copy_2;
         copy_2 = copy;
+        copy_2 = *(new DynamicArray<int>());
         std::cout << copy.get_last() << std::endl;
+        std::cout << copy_2.get_last() << std::endl;
         std::cout << copy[3] << std::endl;
         std::cout << "=====================" << std::endl;
         My_linear_array<int> copy2 {my_linear_array};

@@ -5,7 +5,7 @@ DynamicArray<T>::DynamicArray() : m_size{0}, m_capacity{0}, m_data{nullptr}, m_d
 
 template <typename T>
 DynamicArray<T>::DynamicArray(const DynamicArray &array) : m_size{array.m_size}, m_capacity{array.m_capacity}, m_delete_counter{array.m_delete_counter} {
-    m_data = new T [m_size];
+    m_data = new T [m_capacity];
     for (size_t i = 0; i < m_size; i++) {
         m_data[i] = array.m_data[i];
     }
@@ -41,8 +41,8 @@ void DynamicArray<T>:: push_front(const T &n) {
 template <typename T>
 void DynamicArray<T>::check_capacity() {
     if (m_capacity == 0) {
-        T *new_memory = new T[10];
         m_capacity = 10;
+        T *new_memory = new T[m_capacity];
         m_data = new_memory;
     } else if (m_size == m_capacity) {
         m_capacity *= 1.5;
@@ -110,7 +110,7 @@ T &DynamicArray<T>::operator[](size_t n) {
 
 
 template <typename T>
-DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray<T> &array) {
+DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray<T> &array) noexcept{
     if (this == &array) {
         return *this;
     }
@@ -118,10 +118,25 @@ DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray<T> &array) {
     m_capacity = array.m_capacity;
     m_delete_counter = array.m_delete_counter;
     delete m_data;
-    m_data = new T[m_size];
+    m_data = new T[m_capacity];
     for (size_t i = 0; i < m_size; i++) {
         m_data[i] = array.m_data[i];
     }
+    return *this;
+}
+
+template <typename T>
+DynamicArray<T>& DynamicArray<T>::operator=(DynamicArray<T> &&array) noexcept {
+    if (this == &array) {
+        return *this;
+    }
+    m_size = array.m_size;
+    m_capacity = array.m_capacity;
+    m_delete_counter = array.m_delete_counter;
+    T *tmp = m_data;
+    m_data = array.m_data;
+    array.m_data = nullptr;
+    delete tmp;
     return *this;
 }
 
