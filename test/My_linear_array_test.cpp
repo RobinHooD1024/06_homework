@@ -2,6 +2,18 @@
 
 #include <gtest/gtest.h>
 
+
+struct counter {
+public:
+    counter() {
+        count++;
+    }
+    ~counter() {count--;}
+    static size_t count;
+};
+
+size_t counter::count = 0;
+
 struct My_linear_array_fixture : public testing::Test {
     My_linear_array<int> test_array;
 
@@ -144,6 +156,24 @@ TEST_F(My_linear_array_fixture, copy_container) {
     for (size_t i = 0; i < test_array.get_size(); i++) {
         ASSERT_EQ(ref_array[i],test_array[i]);
     }
+}
+
+TEST(My_linear_array, delete_counter) {
+    // Arrange
+    {
+        My_linear_array<counter> test_array;
+
+        size_t ref_size = 6;
+        for (size_t i = 0; i < ref_size; ++i) {
+            test_array.push_back(counter());
+        }
+        ASSERT_EQ(counter::count, 6);
+    }
+
+    // Act (empty for this test)
+
+    // Assert
+    ASSERT_EQ(counter::count, 0);
 }
 
 

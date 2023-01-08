@@ -2,6 +2,17 @@
 
 #include <gtest/gtest.h>
 
+struct counter {
+public:
+    counter() {
+        count++;
+    }
+    ~counter() {count--;}
+    static size_t count;
+};
+
+size_t counter::count = 0;
+
 struct DynamicArray_fixture : public testing::Test {
     DynamicArray<int> test_array;
 
@@ -144,6 +155,24 @@ TEST_F(DynamicArray_fixture, copy_container) {
     for (size_t i = 0; i < test_array.get_size(); i++) {
         ASSERT_EQ(ref_array[i],test_array[i]);
     }
+}
+
+TEST(DynamicArray, delete_counter) {
+    // Arrange
+    {
+        DynamicArray<counter> test_array;
+
+        size_t ref_size = 6;
+        for (size_t i = 0; i < ref_size; ++i) {
+            test_array.push_back(counter());
+        }
+        ASSERT_EQ(counter::count, 6);
+    }
+
+    // Act (empty for this test)
+
+    // Assert
+    ASSERT_EQ(counter::count, 0);
 }
 
 int main(int argc, char** argv) {

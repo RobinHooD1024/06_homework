@@ -4,7 +4,7 @@ template <typename T>
 My_linear_array<T>::My_linear_array() : m_size{0}, my_node(new Node<T>), erase_count{0} {
     my_node->next = nullptr;
     my_node->prev = nullptr;
-    my_node->data = 0;
+//    my_node->data = 0;
     last_node = first_node = my_node;
 };
 
