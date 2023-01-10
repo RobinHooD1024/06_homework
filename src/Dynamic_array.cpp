@@ -70,6 +70,9 @@ T DynamicArray<T>::get_data(size_t n) {
 }
 
 template <typename T>
+size_t DynamicArray<T>::get_cap() {return m_capacity;}
+
+template <typename T>
 void DynamicArray<T>::erase_data(const T &n) {
     for (size_t i = 0; i < m_size; i++) {
         if (m_data[i] == n) {
@@ -94,9 +97,6 @@ void DynamicArray<T>::erase(size_t n) {
 
 template <typename T>
 size_t DynamicArray<T>:: get_size() {return m_size;}
-
-template <typename T>
-size_t DynamicArray<T>::getCap() {return m_capacity;}
 
 template <typename T>
 DynamicArray<T>::~DynamicArray() {delete[] m_data;}

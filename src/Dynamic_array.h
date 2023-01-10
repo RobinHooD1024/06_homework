@@ -15,7 +15,7 @@ public:
     void erase_data(const T &n);
     void erase(size_t n);
     size_t get_size();
-    size_t getCap();
+    size_t get_cap();
     ~DynamicArray();
     T get_first();
     T get_last();

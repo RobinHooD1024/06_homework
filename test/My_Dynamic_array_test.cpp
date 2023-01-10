@@ -7,7 +7,9 @@ public:
     counter() {
         count++;
     }
-    ~counter() {count--;}
+    ~counter() {
+        count--;
+    }
     static size_t count;
 };
 
@@ -162,11 +164,11 @@ TEST(DynamicArray, delete_counter) {
     {
         DynamicArray<counter> test_array;
 
-        size_t ref_size = 6;
+        size_t ref_size = 10;
         for (size_t i = 0; i < ref_size; ++i) {
             test_array.push_back(counter());
         }
-        ASSERT_EQ(counter::count, 6);
+        ASSERT_EQ(counter::count, test_array.get_cap());
     }
 
     // Act (empty for this test)
